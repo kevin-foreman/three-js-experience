@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="three.min.js"></script>
+    <script src="GLTFLoader.js"></script>
+    <!-- <script src="app.js"></script> -->
+
+    <!-- <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@<version>/build/three.module.js"
+    }
+  }
+    </script> -->
+
+    <script>
+
+        // import * as THREE from 'three';
+
+        // const scene = new THREE.Scene();
+
+        let scene, camera, renderer;
+
+function init() {
+    scene = new THREE.Scene();
+    scene.background = new THREE.Color;
+
+    camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 5000);
+
+    hlight = new THREE.AmbientLight (0x404040,100);
+    scene.add(hlight);
+
+    renderer = new THREE.WebGLRenderer({antialias:true});
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    let loader = new THREE.GLTFLoader();
+    loader.load('scene.gltf', function(gltf) {
+        scene.add(gltf.scene);
+        renderer.render(scene);
+    });
+
+};
+init();
+
+
+
+    </script>
+</body>
+
+</html>
